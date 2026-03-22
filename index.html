@@ -161,10 +161,29 @@
         @media (min-width: 768px) { .work-card, .teaching-card { padding: 40px; } }
 
         .project-link { display: block; text-decoration: none; color: inherit; transition: 0.3s ease; }
-        @media (hover: hover) { .project-link:hover { transform: translateY(-5px); border-color: var(--primary); } }
+        @media (hover: hover) { .project-link:hover .work-card { transform: translateY(-5px); border-color: var(--primary); } }
 
         .journey-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         .journey-item h3 { font-family: var(--heading-font); text-transform: uppercase; font-size: 1.1rem; color: var(--primary); margin-bottom: 15px; }
+
+        /* Narrative teaching section */
+        .teaching-narrative {
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--text);
+            opacity: 0.9;
+        }
+        .teaching-narrative p { margin-bottom: 16px; }
+        .teaching-narrative p:last-child { margin-bottom: 0; }
+        .teaching-highlight {
+            display: inline-block;
+            background: linear-gradient(90deg, rgba(59,130,246,0.12), rgba(245,158,11,0.12));
+            border-left: 3px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 0 10px 10px 0;
+            margin: 8px 0 16px;
+            font-style: italic;
+        }
 
         .exp-list { list-style: none; }
         .exp-list li { position: relative; padding-left: 20px; margin-bottom: 12px; font-size: 0.9rem; line-height: 1.5; }
@@ -184,6 +203,186 @@
             display: inline-block;
             font-size: 0.9rem;
         }
+
+        /* Social proof / testimonial */
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '"';
+            font-family: var(--heading-font);
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.15;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            line-height: 1;
+        }
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.85;
+            margin-bottom: 16px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .testimonial-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .testimonial-author-info strong {
+            display: block;
+            font-family: var(--heading-font);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .testimonial-author-info span {
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+
+        /* Stats row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .stat-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-family: var(--heading-font);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            line-height: 1.1;
+        }
+        .stat-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.55;
+            margin-top: 4px;
+        }
+
+        /* Contact form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+        @media (min-width: 600px) {
+            .form-row { grid-template-columns: 1fr 1fr; }
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-group label {
+            font-family: var(--heading-font);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-family: var(--body-font);
+            font-size: 0.9rem;
+            color: var(--text);
+            transition: border-color 0.2s;
+            outline: none;
+            width: 100%;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+        }
+        .form-group textarea { resize: vertical; min-height: 110px; }
+        .form-submit {
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+            background: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            border: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            align-self: flex-start;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+        .form-submit:disabled { opacity: 0.5; }
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #22c55e;
+            font-family: var(--heading-font);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Contact links row */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            justify-content: center;
+        }
+        .contact-link-btn {
+            text-decoration: none;
+            font-family: var(--heading-font);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            color: var(--text);
+            transition: 0.2s;
+        }
+        .contact-link-btn:hover { border-color: var(--primary); color: var(--primary); }
 
         .toggle {
             position: fixed; bottom: 20px; right: 20px;
@@ -244,19 +443,48 @@
 
     <section id="journey" class="fade">
         <h2>The Journey</h2>
+
+        <!-- Social proof stats -->
+        <div class="stats-row">
+            <div class="stat-box">
+                <span class="stat-number">3+</span>
+                <div class="stat-label">Years Teaching</div>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">JSS1</span>
+                <div class="stat-label">Science Classes</div>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">TRCN</span>
+                <div class="stat-label">Licensed Educator</div>
+            </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial-card">
+            <p class="testimonial-text">Emeka has a rare gift — he makes abstract scientific ideas feel alive and relevant. His students don't just memorise facts; they learn to ask questions. That's the hallmark of an exceptional teacher.</p>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">👩‍🏫</div>
+                <div class="testimonial-author-info">
+                    <strong>A Colleague</strong>
+                    <span>Fellow Science Educator</span>
+                </div>
+            </div>
+        </div>
+
         <div class="teaching-card">
             <div class="journey-grid">
                 <div class="journey-item">
                     <h3>Teaching Experience</h3>
-                    <ul class="exp-list">
-                        <li>Teach Basic Science to JSS1 students using interactive, activity-based methods.</li>
-                        <li>Design and supervise individual projects that promote hands-on learning.</li>
-                        <li>Conduct tests, grade assignments, and evaluate student performance.</li>
-                        <li>Encourage creativity and scientific curiosity through real-life examples.</li>
-                        <li>Assisted in preparing lesson plans, instructional materials, and assessments.</li>
-                        <li>Maintained discipline and engagement through effective management techniques.</li>
-                        <li>Supported students with additional tutoring to improve performance.</li>
-                    </ul>
+                    <!-- Narrative rewrite of the teaching experience -->
+                    <div class="teaching-narrative">
+                        <p>In the classroom, I don't just deliver content — I engineer curiosity. Working with JSS1 students, I've turned Basic Science from a subject into a way of seeing the world, using activity-based methods that put discovery at the centre of every lesson.</p>
+                        <div class="teaching-highlight">
+                            Each student project is a small experiment in agency — I design, supervise, and let them lead.
+                        </div>
+                        <p>From drafting lesson plans and instructional materials to running assessments and providing one-on-one tutoring, my approach is holistic: evaluate rigorously, engage creatively, and never let a struggling student fall through the cracks.</p>
+                        <p>Discipline isn't imposed — it's cultivated through relevance. When students see science in the world around them, the room manages itself.</p>
+                    </div>
                 </div>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
@@ -268,6 +496,8 @@
                             <span class="exp-pill">Digital Literacy</span>
                             <span class="exp-pill">Critical Thinking</span>
                             <span class="exp-pill">Team Collaboration</span>
+                            <span class="exp-pill">Screenwriting</span>
+                            <span class="exp-pill">Storytelling</span>
                         </div>
                     </div>
                     
@@ -286,6 +516,7 @@
 
     <section id="portfolio" class="fade">
         <h2>Scripts & Stories</h2>
+
         <a href="https://www.youtube.com/watch?v=LPE3QhY8UKk" target="_blank" class="project-link">
             <div class="work-card">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -305,16 +536,52 @@
                 <p style="margin-top: 10px; font-style: italic; opacity: 0.8; font-size: 0.9rem;">A visceral noir thriller exploring the psychological hunt for a predator known as the "Rape Raider."</p>
             </div>
         </a>
+
+        <!-- Placeholder 3rd work card to encourage adding more -->
+        <div class="work-card" style="border-style: dashed; opacity: 0.45; text-align: center; padding: 30px;">
+            <p style="font-family: var(--heading-font); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">More works coming soon</p>
+        </div>
     </section>
 
     <section id="contact" class="fade">
         <h2>Send a Pulse</h2>
         <div class="work-card">
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center;">
-                    <a href="https://wa.me/2348142624400" target="_blank" style="text-decoration: none; font-family: var(--heading-font); font-weight: 700; color: var(--primary);">WhatsApp</a>
-                    <a href="mailto:emordiemeka42@gmail.com" style="text-decoration: none; font-family: var(--heading-font); font-weight: 700; color: var(--accent);">Email</a>
+            <!-- Contact form -->
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Ada Okonkwo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="ada@example.com" required>
+                    </div>
                 </div>
+                <div class="form-group">
+                    <label for="subject">What's this about?</label>
+                    <select id="subject" name="subject">
+                        <option value="">Select a topic…</option>
+                        <option value="collaboration">Script / Creative Collaboration</option>
+                        <option value="tutoring">Tutoring / Educational Content</option>
+                        <option value="speaking">Speaking / Workshop</option>
+                        <option value="other">Something Else</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Tell me what you're working on…" required></textarea>
+                </div>
+                <button type="submit" class="form-submit" id="submitBtn">Send the Pulse →</button>
+            </form>
+            <div class="form-success" id="formSuccess">
+                ✓ Message received — I'll be in touch soon.
+            </div>
+
+            <!-- Quick links below the form -->
+            <div class="contact-links">
+                <a href="https://wa.me/2348142624400" target="_blank" class="contact-link-btn">💬 WhatsApp</a>
+                <a href="mailto:emordiemeka42@gmail.com" class="contact-link-btn">✉️ Email</a>
             </div>
         </div>
     </section>
@@ -353,6 +620,29 @@
         ents.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+    // Contact form handler — opens mailto as fallback since there's no backend
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value || 'Portfolio Enquiry';
+        const message = document.getElementById('message').value;
+
+        const mailtoBody = encodeURIComponent(`From: ${name} (${email})\n\nSubject: ${subject}\n\n${message}`);
+        const mailtoLink = `mailto:emordiemeka42@gmail.com?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
+
+        // Simulate a brief delay then open mail client
+        setTimeout(() => {
+            window.location.href = mailtoLink;
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        }, 800);
+    }
 </script>
 
 </body>

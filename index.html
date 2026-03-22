@@ -47,7 +47,7 @@
         @media (min-width: 1024px) {
             #cursor { display: block; }
             body { cursor: none; }
-            a, button, .work-card, .teaching-card, .exp-pill, .cv-btn, #backToTop { cursor: none; }
+            a, button, .work-card, .teaching-card, .exp-pill, #backToTop { cursor: none; }
         }
 
         body {
@@ -185,20 +185,6 @@
             font-size: 0.9rem;
         }
 
-        .cv-btn {
-            font-family: var(--heading-font);
-            text-transform: uppercase;
-            border: 2px solid var(--text);
-            color: var(--text);
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.75rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .toggle {
             position: fixed; bottom: 20px; right: 20px;
             width: 50px; height: 50px; border-radius: 50%;
@@ -325,10 +311,9 @@
         <h2>Send a Pulse</h2>
         <div class="work-card">
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
+                <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center;">
                     <a href="https://wa.me/2348142624400" target="_blank" style="text-decoration: none; font-family: var(--heading-font); font-weight: 700; color: var(--primary);">WhatsApp</a>
                     <a href="mailto:emordiemeka42@gmail.com" style="text-decoration: none; font-family: var(--heading-font); font-weight: 700; color: var(--accent);">Email</a>
-                    <a href="#" download class="cv-btn">CV 📥</a>
                 </div>
             </div>
         </div>

@@ -3,85 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Portfolio | Education & Screenwriting</title>
+    <title>Emeka James | Screenwriter & Educator</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #e67e22;
-            --light: #f4f7f6;
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --primary: #3b82f6; /* Science Blue */
+            --accent: #f59e0b;  /* Creative Gold */
+            --card-bg: #f8fafc;
+            --border: #e2e8f0;
+            --heading-font: 'Syne', sans-serif;
+            --body-font: 'Outfit', sans-serif;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; line-height: 1.6; color: #333; background: var(--light); }
-        header { background: var(--primary); color: white; padding: 4rem 1rem; text-align: center; }
-        nav { background: #fff; padding: 1rem; position: sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
-        nav a { margin: 0 15px; text-decoration: none; color: var(--primary); font-weight: bold; }
-        .container { max-width: 900px; margin: auto; padding: 2rem; }
-        section { margin-bottom: 4rem; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h2 { border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; color: var(--primary); }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .card { border-left: 4px solid var(--accent); padding-left: 15px; background: #fafafa; padding: 10px; }
-        footer { text-align: center; padding: 2rem; background: var(--primary); color: white; margin-top: 2rem; }
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+        body.dark {
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --primary: #60a5fa;
+            --accent: #fbbf24;
+            --card-bg: #1e293b;
+            --border: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* INTERACTIVE CURSOR */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease-out;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            #cursor { display: block; }
+            body { cursor: none; }
+            a, button, .work-card { cursor: none; }
+        }
+
+        body {
+            font-family: var(--body-font);
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.4s ease, color 0.4s ease;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            padding: 140px 20px 100px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent);
+        }
+
+        h1 {
+            font-family: var(--heading-font);
+            font-size: clamp(3rem, 12vw, 6rem);
+            line-height: 0.85;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .tagline {
+            font-family: var(--heading-font);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            opacity: 0.6;
+            font-weight: 800;
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 25px;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        body.dark nav { background: rgba(15, 23, 42, 0.8); }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+        }
+        nav a:hover { color: var(--primary); }
+
+        /* CONTAINER & SECTIONS */
+        .container { max-width: 900px; margin: auto; padding: 60px 20px; }
+
+        section { margin-bottom: 120px; }
+
+        h2 {
+            font-family: var(--heading-font);
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2::after {
+            content: "";
+            height: 2px;
+            flex-grow: 1;
+            background: var(--border);
+        }
+
+        /* WORK CARDS */
+        .work-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .work-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .work-card h3 {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        /* BUTTONS */
+        .btn {
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            background: var(--primary);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px -10px rgba(245, 158, 11, 0.6);
+        }
+
+        /* DARK MODE TOGGLE */
+        .toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
+            background: var(--text);
+            color: var(--bg);
+            border: none;
+            font-size: 24px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* FORMS */
+        form input, form textarea {
+            width: 100%;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 14px;
+            border: 2px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--body-font);
+            font-size: 1rem;
+        }
+        form input:focus, form textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .fade { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .fade.show { opacity: 1; transform: translateY(0); }
+
+        footer { text-align: center; padding: 80px 20px; border-top: 1px solid var(--border); }
+
+        blockquote {
+            font-size: 1.5rem;
+            font-weight: 300;
+            font-style: italic;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 40px 0;
+            opacity: 0.9;
+        }
+
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Emordi Emeka James</h1>
-    <p>Educator | Screenwriter | Narrative Strategist</p>
+<div id="cursor"></div>
+
+<button class="toggle" onclick="toggleDarkMode()" aria-label="Switch Mode">
+    🌓
+</button>
+
+<header class="fade">
+    <div style="font-size: 2.5rem; margin-bottom: 15px; filter: grayscale(0.5);">🔬 🖋️</div>
+    <p class="tagline">Emordi Emeka James</p>
+    <h1>SCIENTIST <br>& SCRIBE</h1>
+    <div style="margin-top: 30px;">
+        <a href="#contact" class="btn">Start a Project</a>
+    </div>
 </header>
 
 <nav>
-    <a href="#about">About</a>
-    <a href="#education">Education</a>
-    <a href="#writing">Writing</a>
+    <a href="#about">Story</a> 
+    <a href="#portfolio">Lab</a> 
     <a href="#contact">Contact</a>
 </nav>
 
 <div class="container">
-    <section id="about">
-        <h2>About Me</h2>
-        <p>A dual-path professional dedicated to shaping minds in the classroom and crafting worlds on the screen. I specialize in primary-level curriculum development and cinematic storytelling, blending structured pedagogy with creative narrative techniques.</p>
+    <section id="about" class="fade">
+        <h2>The Thesis</h2>
+        <p style="font-size: 1.25rem; font-weight: 300;">
+            I teach <strong>Basic Science</strong> to sharpen the mind and write <strong>Screenplays</strong> to stir the heart. 
+            My work lives at the intersection of logic and imagination.
+        </p>
+        <blockquote>
+            "Every reaction has a cause; every character has a choice."
+        </blockquote>
     </section>
 
-    <section id="education">
-        <h2>Educational Expertise</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Curriculum Design</h3>
-                <p>Specializing in CCA, English Grammar, and Phonics for Basic 3-5.</p>
-            </div>
-            <div class="card">
-                <h3>Lesson Delivery</h3>
-                <p>Developing structured academic notes that prioritize student engagement and clarity.</p>
-            </div>
+    <section id="portfolio" class="fade">
+        <h2>Selected Artifacts</h2>
+        
+        <div class="work-card">
+            <h3>Papa Joseph</h3>
+            <p>A moral drama exploring faith, consequence, and the cost of silence.</p>
+        </div>
+
+        <div class="work-card">
+            <h3>Opera on Christmas Eve</h3>
+            <p>Suspense unfolds during a festive night where celebration turns into revelation.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+             <a href="Emordi_Emeka_James_CV.pdf" class="btn" download style="background: var(--text);">📂 Download Full CV</a>
         </div>
     </section>
 
-    <section id="writing">
-        <h2>Writing & Screenplay Portfolio</h2>
-        <p>Exploring human connection and complex character arcs through crime thrillers, sci-fi mysteries, and poetry.</p>
-        <div class="grid">
-            <div class="card">
-                <h3>Screenwriting</h3>
-                <p>Technical expertise in beats, transitions, and cinematic structure.</p>
-            </div>
-            <div class="card">
-                <h3>Creative Prose</h3>
-                <p>Existential poetry and narrative anecdotes featured on platforms like Medium.</p>
-            </div>
+    <section id="contact" class="fade">
+        <h2>Send a Pulse</h2>
+        <div class="work-card" style="border: 2px dashed var(--primary); background: transparent;">
+            <form action="https://formspree.io/f/xjgadelq" method="POST">
+                <input type="text" name="name" placeholder="Name or Organization" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="message" rows="5" placeholder="How can we collaborate?" required></textarea>
+                <button type="submit" class="btn" style="width: 100%;">Ignite Conversation 🚀</button>
+            </form>
         </div>
-    </section>
-
-    <section id="contact">
-        <h2>Let's Collaborate</h2>
-        <p>Available for curriculum consulting, scriptwriting commissions, or guest lectures.</p>
-        <p>Email: <strong>emordiemeka42@gmail.com</strong></p>
     </section>
 </div>
 
 <footer>
-    <p>&copy; 2026 Emordi Emeka James. All Rights Reserved.</p>
+    <p style="font-family: var(--heading-font); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.2em;">
+        © <span id="year"></span> Emeka James
+    </p>
+    <div style="margin-top: 25px; display: flex; justify-content: center; gap: 30px;">
+        <a href="https://wa.me/2348142624400" style="color: var(--primary); text-decoration: none; font-weight: 600;">WhatsApp</a>
+        <a href="mailto:emordiemeka42@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">Email</a>
+    </div>
 </footer>
+
+<script>
+    // SMOOTH CURSOR
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+        cursor.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
+    });
+
+    // CURSOR INTERACTION
+    document.querySelectorAll('a, button, .work-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(2.5)');
+        el.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(2.5)', ''));
+    });
+
+    // DARK MODE
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark");
+    }
+
+    // YEAR
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // SCROLL ANIMATIONS
+    const faders = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    faders.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>

@@ -451,7 +451,7 @@
                 <div class="stat-label">Years Teaching</div>
             </div>
             <div class="stat-box">
-                <span class="stat-number">JSS1</span>
+                <span class="stat-number">JSS1, Basic Three Pupils</span>
                 <div class="stat-label">Science Classes</div>
             </div>
             <div class="stat-box">
@@ -466,7 +466,7 @@
             <div class="testimonial-author">
                 <div class="testimonial-avatar">👩‍🏫</div>
                 <div class="testimonial-author-info">
-                    <strong>A Colleague</strong>
+                    <strong>Mrs. Stella</strong>
                     <span>Fellow Science Educator</span>
                 </div>
             </div>
@@ -547,7 +547,7 @@
         <h2>Send a Pulse</h2>
         <div class="work-card">
             <!-- Contact form -->
-            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjgadelq" method="POST" onsubmit="handleSubmit(event)">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Your Name</label>
@@ -581,7 +581,7 @@
             <!-- Quick links below the form -->
             <div class="contact-links">
                 <a href="https://wa.me/2348142624400" target="_blank" class="contact-link-btn">💬 WhatsApp</a>
-                <a href="mailto:emordiemeka42@gmail.com" class="contact-link-btn">✉️ Email</a>
+                <a href="/cdn-cgi/l/email-protection#aacfc7c5d8cec3cfc7cfc1cb9e98eacdc7cbc3c684c9c5c7" class="contact-link-btn">✉️ Email</a>
             </div>
         </div>
     </section>
@@ -589,7 +589,7 @@
 
 <footer><p>© <span id="year"></span> Emordi Emeka James</p></footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const cursor = document.getElementById('cursor');
     if (window.matchMedia("(min-width: 1024px)").matches) {
         document.addEventListener('mousemove', e => {
@@ -621,29 +621,37 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
-    // Contact form handler — opens mailto as fallback since there's no backend
-    function handleSubmit(e) {
+    // Contact form handler — submits to Formspree
+    async function handleSubmit(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         btn.disabled = true;
         btn.textContent = 'Sending…';
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value || 'Portfolio Enquiry';
-        const message = document.getElementById('message').value;
+        const form = document.getElementById('contactForm');
+        const data = new FormData(form);
 
-        const mailtoBody = encodeURIComponent(`From: ${name} (${email})\n\nSubject: ${subject}\n\n${message}`);
-        const mailtoLink = `mailto:emordiemeka42@gmail.com?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
 
-        // Simulate a brief delay then open mail client
-        setTimeout(() => {
-            window.location.href = mailtoLink;
-            document.getElementById('contactForm').style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'block';
-        }, 800);
+            if (response.ok) {
+                form.style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Send the Pulse →';
+                alert('Something went wrong. Please try again or reach out via WhatsApp.');
+            }
+        } catch (err) {
+            btn.disabled = false;
+            btn.textContent = 'Send the Pulse →';
+            alert('Network error. Please try again.');
+        }
     }
 </script>
-
 </body>
 </html>

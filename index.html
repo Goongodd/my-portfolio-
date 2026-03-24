@@ -592,7 +592,7 @@
             <!-- Quick links below the form -->
             <div class="contact-links">
                 <a href="#" id="waLink" class="contact-link-btn">💬 WhatsApp</a>
-                <a href="/cdn-cgi/l/email-protection#aacfc7c5d8cec3cfc7cfc1cb9e98eacdc7cbc3c684c9c5c7" class="contact-link-btn">✉️ Email</a>
+                <a href="#" id="emailLink" class="contact-link-btn">✉️ Email</a>
             </div>
         </div>
     </section>
@@ -600,7 +600,7 @@
 
 <footer><p>© <span id="year"></span> Emordi Emeka James</p></footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
     const cursor = document.getElementById('cursor');
     if (window.matchMedia("(min-width: 1024px)").matches) {
         document.addEventListener('mousemove', e => {
@@ -635,6 +635,15 @@
             el.href = parts.join('');
             el.target = '_blank';
             el.rel = 'noopener noreferrer';
+        }
+    })();
+
+    // Obfuscated email link — assembled at runtime
+    (function() {
+        const parts = ['emordi', 'emeka42', '@', 'gmail', '.com'];
+        const el = document.getElementById('emailLink');
+        if (el) {
+            el.href = 'mailto:' + parts.join('');
         }
     })();
 

@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Emordi Emeka James: Basic Science educator and screenwriter blending logic with imagination.">
     <meta name="author" content="Emordi Emeka James">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' /cdn-cgi/scripts/;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data:;
+        connect-src 'self' https://formspree.io;
+        frame-ancestors 'none';
+    ">
     <title>Emeka James | Scientist & Scribe</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
@@ -517,7 +526,7 @@
     <section id="portfolio" class="fade">
         <h2>Scripts & Stories</h2>
 
-        <a href="https://www.youtube.com/watch?v=LPE3QhY8UKk" target="_blank" class="project-link">
+        <a href="https://www.youtube.com/watch?v=LPE3QhY8UKk" target="_blank" rel="noopener noreferrer" class="project-link">
             <div class="work-card">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="color: var(--primary); font-size: 1.2rem;">One Night, Maybe.</h3>
@@ -527,7 +536,7 @@
             </div>
         </a>
 
-        <a href="https://medium.com/illumination/partyers-are-endangered-species-2b2861872145" target="_blank" class="project-link">
+        <a href="https://medium.com/illumination/partyers-are-endangered-species-2b2861872145" target="_blank" rel="noopener noreferrer" class="project-link">
             <div class="work-card">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="color: var(--primary); font-size: 1.2rem;">Partyers Are Endangered</h3>
@@ -547,7 +556,7 @@
         <h2>Send a Pulse</h2>
         <div class="work-card">
             <!-- Contact form -->
-            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjgadelq" method="POST" onsubmit="handleSubmit(event)">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Your Name</label>
@@ -573,6 +582,8 @@
                     <textarea id="message" name="message" placeholder="Tell me what you're working on…" required></textarea>
                 </div>
                 <button type="submit" class="form-submit" id="submitBtn">Send the Pulse →</button>
+                <!-- Honeypot: hidden from humans, traps bots -->
+                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             </form>
             <div class="form-success" id="formSuccess">
                 ✓ Message received — I'll be in touch soon.
@@ -580,7 +591,7 @@
 
             <!-- Quick links below the form -->
             <div class="contact-links">
-                <a href="https://wa.me/2348142624400" target="_blank" class="contact-link-btn">💬 WhatsApp</a>
+                <a href="#" id="waLink" class="contact-link-btn">💬 WhatsApp</a>
                 <a href="/cdn-cgi/l/email-protection#aacfc7c5d8cec3cfc7cfc1cb9e98eacdc7cbc3c684c9c5c7" class="contact-link-btn">✉️ Email</a>
             </div>
         </div>
@@ -615,6 +626,17 @@
     function toggleDarkMode() { document.body.classList.toggle("dark"); }
     function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Obfuscated WhatsApp link — assembled at runtime to avoid scraper harvesting
+    (function() {
+        const parts = ['https://wa', '.me/', '2348142', '624400'];
+        const el = document.getElementById('waLink');
+        if (el) {
+            el.href = parts.join('');
+            el.target = '_blank';
+            el.rel = 'noopener noreferrer';
+        }
+    })();
 
     const obs = new IntersectionObserver(ents => {
         ents.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });

@@ -497,6 +497,14 @@ section + section::before {
 }
 .contact-link-btn:hover { border-color: var(--primary); color: var(--primary); }
 
+.contact-link-sub {
+    font-size: 0.65rem;
+    opacity: 0.55;
+    margin-left: 4px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
 /* ---------- Floating Buttons ---------- */
 .toggle {
     position: fixed; bottom: 20px; right: 20px;

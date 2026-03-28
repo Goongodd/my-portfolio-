@@ -108,6 +108,36 @@ body.dark {
     border-radius: 16px;
 }
 
+/* ---------- Scroll Progress Bar ---------- */
+#scrollProgress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    z-index: 9999;
+    transition: width 0.1s linear;
+}
+
+/* ---------- Available For ---------- */
+.available-for {
+    margin-top: 16px;
+    font-size: 0.72rem;
+    font-family: var(--heading-font);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.5;
+    line-height: 2;
+}
+.available-for span {
+    display: inline-block;
+    margin: 2px 4px;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.65rem;
+}
+
 /* ---------- Reset ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 

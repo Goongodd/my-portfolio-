@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://tristanjames.netlify.app/sitemap.xml
